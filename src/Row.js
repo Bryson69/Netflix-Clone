@@ -1,7 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import axios from "./axios";
+import "./Row.css";
 
-function Row( {title} ) {
+
+const base_url = "https://image.tmdb.org/t/p/original";
+
+
+function Row( {title, fetchURL} ) {
 
     const [movies, setMovies] = useState([]);
 
@@ -9,20 +14,37 @@ function Row( {title} ) {
     useEffect(() => {
         // if [], run once when the row loads, and dont run again
         async function fetchData(){
+            // this is the url were sending a request to then the url but replaces the api key our api key
+            // https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_networks=213 
+            // await -- When you make a request wait for the promise or data to come back then do sth
             const request = await axios.get(fetchURL);
-            // https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_networks=213
+            console.log(request.data.results);
+            //
+            setMovies(request.data.results);
+            return request;
         }
         fetchData();
-    }, [movies]);
+    }, [fetchURL]);
+
+    console.table(movies)
 
 
     return (
-        <div>
+        <div className="row">
             <h2> {title} </h2>
+
+            <div className="row__posters"> 
+            {/*several row__posters*/}
+        
+            {movies.map((movie) => (
+                <img 
+                className="row__poster"
+                src={ `${base_url}${movie.poster_path}` } alt={movie.name}
+                />
+            ))}
+            </div>
             
             {/**/}
-
-           
         </div>
     )
 }
