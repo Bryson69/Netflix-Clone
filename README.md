@@ -1,8 +1,13 @@
 <h1 align="center">NETFLIX CLONE</h1>
+
+<p align="center">
+    <br>
+     <img src="https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge" >
+    <br>
+</p>
 <p align="center">
     <br>
      <img src="https://forthebadge.com/images/badges/powered-by-netflix.svg" >
-     <img src="https://forthebadge.com/images/badges/for-you.svg" >
     <br>
 </p>
 
